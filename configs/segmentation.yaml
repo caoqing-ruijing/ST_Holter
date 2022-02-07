@@ -1,0 +1,39 @@
+---
+TRY_TIME: "segmentation"
+
+DATASET:
+  TRAIN_CSV: "./data/segmentation/train_segmentation.csv"
+  VAL_CSV: "./data/segmentation/val_segmentation.csv"
+  MODEL_SAVE_DIR: "./model_outputs/"
+
+DATASET_CUSTOME:
+  INPUT_LENGTH: 7168
+  LEADS: ['I','II','III','aVR','aVL','aVF','V1','V2','V3','V4','V5','V6']
+  OUT_C: 3
+  TARGET_NAMES: ['baseline','use','non']
+  # OUT_C: 1
+  # Pertrain_Path: "/home/raid_24T/qiaoran_data24T/All_project_model_output/holter_ST/senseg_denoise_Nov_11th_unet_transformer_T0_12lead_2021_11_14-17_56/models/model_epoch_306_val_0.031192.pth"
+
+# Classes ---
+OPTIM:
+  BATCH_SIZE: 64
+  NUM_EPOCHS: 600
+  # NEPOCH_DECAY: [10]
+  LR_INITIAL: 0.001
+  LR_MIN: 0.000001
+  Dice_ratio: 0.5
+  CE_ratio: 0.0
+  Focal_ratio: 0.5
+  Focal_ignore_idx: -100
+
+MODEL:
+  MODE: 'unet_transformer_upsample'
+  SESSION: 'v1'
+  # embed_dim: 24
+  EMBED_DIM: 24
+  WINDOW_SIZE: 112
+  PATCH_SIZE: 2 # 112 224 448
+  DEPTHS: [2, 2, 3, 2]
+  N_HEADS: [3, 6, 12, 24]
+  Denoise_Mode: True
+
