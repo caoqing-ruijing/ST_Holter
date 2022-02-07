@@ -1,0 +1,52 @@
+---
+TRY_TIME: "denoise"
+
+DATASET:
+  train_normal : "./data/noise/train_denoise.csv"
+  val_normal : "./data/noise/val_denoise.csv"
+
+  train_noise : [
+                    "./data/noise/noise_combine.csv",
+                    "./data/noise/noise_combine_bw.csv",
+                    "./data/noise/noise_combine_em.csv",
+                    "./data/noise/noise_combine_ma.csv",
+                ]
+
+  val_noise : [
+                    "./data/noise/noise_combine.csv",
+                    "./data/noise/noise_combine_bw.csv",
+                    "./data/noise/noise_combine_em.csv",
+                    "./data/noise/noise_combine_ma.csv",
+              ]
+
+  MODEL_SAVE_DIR: "./model_outputs/"
+  n_sample: 5000
+
+DATASET_CUSTOME:
+  INPUT_LENGTH: 7168
+  LEADS: ['I','II','III','aVR','aVL','aVF','V1','V2','V3','V4','V5','V6']
+  OUT_C: 1
+  max_syn_noise: 2
+  add_noise_ratio: 0.5
+  random_ranges: [0.3,0.5]
+
+# Classes ---
+OPTIM:
+  BATCH_SIZE: 64
+  NUM_EPOCHS: 300
+  # NEPOCH_DECAY: [10]
+  LR_INITIAL: 0.0001
+  LR_MIN: 0.000001
+  Dice_ratio: 0.5
+  CE_ratio: 0.0
+  Focal_ratio: 0.5
+  Focal_ignore_idx: -100
+  SCALE: 1
+
+MODEL:
+  EMBED_DIM: 24
+  WINDOW_SIZE: 112
+  PATCH_SIZE: 2 # 112 224 448
+  DEPTHS: [2, 2, 3, 2]
+  N_HEADS: [3, 6, 12, 24]
+  Denoise_Mode: True
