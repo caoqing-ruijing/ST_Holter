@@ -1,6 +1,6 @@
 # ST Holter
 
-This repo is the official implementation of "Accurate detection of ST-segment and J point deviation from 12-lead Holter ECG using deep neural network". 
+This repo is the official implementation of "Using Multi-Task Learning-based Framework to Detect ST-segment and J-point Deviation from Holter". 
 
 This including the whole train code of our proposed transformed based model. 
 
@@ -37,7 +37,6 @@ the example feather files are proven in `./data/segmentation/`
 
 
 ### train the model
-
 the model is training with config file, which setting the dataset and hypermeter
 once set the config, 
 
